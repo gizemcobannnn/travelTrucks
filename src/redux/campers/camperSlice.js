@@ -27,7 +27,7 @@ export const camperSlice = createSlice({
                 state.error = action.error;
                 state.camper = {};
             })
-            .addCase(fetchCamper.fullfilled, (state,action) => {
+            .addCase(fetchCamper.fulfilled, (state,action) => {
                 state.camper = action.payload;
                 state.error = null;
                 state.campers = [];
