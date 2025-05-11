@@ -1,7 +1,7 @@
-
+import Picture from '../../assets/Picture.svg';
 const HomePage = () => {
   return (
-      <div className="bg-[url('/assets/Picture.png')] bg-cover bg-no-repeat h-64 w-full" >
+      <div style={{backgroundImage: `url(${Picture})`}} className="h-60 w-full" >
         <div className="flex flex-col justify-center items-start h-full gap-3 bg-black bg-opacity-50">
             <p>Campers of your dream</p>
             <p>You can find everything you want in our catalog</p>
