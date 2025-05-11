@@ -1,5 +1,6 @@
 import './App.css'
 import Header from './components/Header/Header.jsx'
+import CatalogPage from './pages/CatalogPage/CatalogPage.jsx'
 import HomePage from './pages/HomePage/HomePage.jsx'
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
   return (
     <>
       {/**<HomePage></HomePage>*/}
-      <Header></Header>
+      {/**<Header></Header>*/}
+      <CatalogPage></CatalogPage>
     </>
   )
 }
