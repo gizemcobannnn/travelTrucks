@@ -1,3 +1,11 @@
+import vanIcon from '../../assets/bi_grid-1x2.svg';
+import fullyIcon from '../../assets/bi_grid.svg';
+import alcoveIcon from '../../assets/bi_grid-3x3-gap.svg';
+import cupHot from '../../assets/cup-hot.svg';
+import diagram from '../../assets/diagram.svg';
+import shower from '../../assets/ph_shower.svg';
+import tv from '../../assets/tv.svg';
+import wind from '../../assets/wind.svg';
 
 const CatalogPage=()=>{
   return (
@@ -11,24 +19,24 @@ const CatalogPage=()=>{
                 <p className="text-slate-500">Filters</p>
                 <p>Vehicle Equipment</p>
                 <div className="flex flex-wrap gap-2">
-                    <div>
-                        <img src="" alt="" />
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={wind} alt="ac" />
                         <p>AC</p>
                     </div>
-                    <div>
-                        <img src="" alt="" />
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={diagram} alt="auto" />
                         <p>Automatic</p>
                     </div>
-                    <div>
-                        <img src="" alt="" />
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={cupHot} alt="cup" />
                         <p>Kitchen</p>
                     </div>
-                    <div>
-                        <img src="" alt="" />
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={tv} alt="tv" />
                         <p>TV</p>
                     </div>
-                    <div>
-                        <img src="" alt="" />
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={shower} alt="bathroom" />
                         <p>Bathroom</p>
                     </div>
             </div>
@@ -36,17 +44,17 @@ const CatalogPage=()=>{
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2">
-                    <div>
-                        <img src="" alt="" />
-                        <p>Van</p>
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={vanIcon} alt="van" />
+                        <p className='text-sm'>Van</p>
                     </div>
-                    <div>
-                        <img src="" alt="" />
-                        <p>Fully integrated</p>
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={fullyIcon} alt="fully" />
+                        <p className='text-sm flex leading-tight'>Fully integrated</p>
                     </div>
-                    <div>
-                        <img src="" alt="" />
-                        <p>Alcove</p>
+                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                        <img src={alcoveIcon} alt="alcove" />
+                        <p className='text-sm'>Alcove</p>
                     </div>
             </div>
             </div>
