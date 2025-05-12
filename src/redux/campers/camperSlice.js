@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCamper, fetchCampers } from './campersOps';
 export const initialState = {
-    name: "campers",
+    name: "trucks",
     campers: [],
     camper : {},
     error: null,
@@ -13,7 +13,7 @@ export const camperSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCampers.fulfilled, (state,action) => {
-                state.campers = action.payload;
+                state.campers = action.payload.items;
                 state.error = null;
                 state.camper ={}
             })

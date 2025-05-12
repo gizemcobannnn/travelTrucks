@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import camperReducer from './campers/camperSlice';
 
 const camperPersistConfig = {
-  key: 'camper',
+  key: 'trucks',
   storage,
   whitelist: ['campers','camper'], // sadece favorites'ı localStorage'da saklayacak
 };
@@ -13,7 +13,7 @@ const persistedCamperReducer = persistReducer(camperPersistConfig, camperReducer
 
 export const store = configureStore({
   reducer: {
-    camper: persistedCamperReducer,
+    trucks: persistedCamperReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
