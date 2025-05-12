@@ -13,3 +13,8 @@ button{
   cursor: pointer;
   
 }
+
+
+.selected {
+  border: 2px  solid black
+}

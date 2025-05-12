@@ -8,10 +8,11 @@ import tv from '../../assets/tv.svg';
 import wind from '../../assets/wind.svg';
 import { useDispatch } from 'react-redux';
 import { fetchCampers } from '../../redux/campers/campersOps';
+import { useState } from 'react';
 const CatalogPage=()=>{
    // const [location, setLocation] = useState('');
-   // const [vehicleType, setVehicleType] = useState('');
-   // const [vehicleEquipment, setVehicleEquipment] = useState('');
+    const [vehicleType, setVehicleType] = useState('');
+    const [vehicleEquipment, setVehicleEquipment] = useState('');
    // const [campers, setCampers] = useState([]);
     const dispatch = useDispatch();
     let campers = []
@@ -19,7 +20,8 @@ const CatalogPage=()=>{
     e.preventDefault();
      campers=dispatch(fetchCampers(e.target.value));
     };
-
+    console.log(vehicleEquipment);
+        console.log(vehicleType);
   return (
     <>
     <div className='flex flex-row justify-around items-start flex-wrap w-full'>
@@ -32,23 +34,28 @@ const CatalogPage=()=>{
                 <p className="text-slate-500">Filters</p>
                 <p>Vehicle Equipment</p>
                 <div className="grid grid-cols-3 grid-rows-2  gap-2 md:gap-5">
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "AC"?"selected":""}`}
+                        onClick={()=> setVehicleEquipment("AC")}>
                         <img src={wind} alt="ac" />
                         <p>AC</p>
                     </div>
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Automatic"?"selected":""}`}
+                        onClick={()=> setVehicleEquipment("Automatic")}>
                         <img src={diagram} alt="auto" />
                         <p>Automatic</p>
                     </div>
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Kitchen"?"selected":""}`}
+                        onClick={()=> setVehicleEquipment("Kitchen")}>
                         <img src={cupHot} alt="cup" />
                         <p>Kitchen</p>
                     </div>
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "TV"?"selected":""}`}
+                        onClick={()=> setVehicleEquipment("TV")}>
                         <img src={tv} alt="tv" />
                         <p>TV</p>
                     </div>
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Bathroom"?"selected":""}`}
+                        onClick={()=> setVehicleEquipment("Bathroom")}>
                         <img src={shower} alt="bathroom" />
                         <p>Bathroom</p>
                     </div>
@@ -57,15 +64,18 @@ const CatalogPage=()=>{
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2 md:gap-5">
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Van"?"selected":""}`}
+                        onClick={()=> setVehicleType("Van")}>
                         <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
                     </div>
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Fully integrated"?"selected":""}`}
+                        onClick={()=> setVehicleType("Fully integrated")}>
                         <img src={fullyIcon} alt="fully" />
                         <p className='text-sm flex leading-tight'>Fully integrated</p>
                     </div>
-                    <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Alcove"?"selected":""}`}
+                        onClick={()=> setVehicleType("Alcove")}>
                         <img src={alcoveIcon} alt="alcove" />
                         <p className='text-sm'>Alcove</p>
                     </div>
