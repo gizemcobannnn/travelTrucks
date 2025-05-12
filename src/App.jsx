@@ -10,8 +10,11 @@ function App() {
     <>
       {/**<HomePage></HomePage>*/}
       {/**<Header></Header>*/}
-      {/** <CatalogPage></CatalogPage> */}
-      <DetailsPage></DetailsPage>
+      {/**  */}
+      
+      <CatalogPage></CatalogPage>
+      
+      {/** <DetailsPage></DetailsPage> */}
     </>
   )
 }

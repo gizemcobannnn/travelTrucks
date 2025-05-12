@@ -6,11 +6,24 @@ import diagram from '../../assets/diagram.svg';
 import shower from '../../assets/ph_shower.svg';
 import tv from '../../assets/tv.svg';
 import wind from '../../assets/wind.svg';
-
+import { useDispatch } from 'react-redux';
+import { fetchCampers } from '../../redux/campers/campersOps';
 const CatalogPage=()=>{
+   // const [location, setLocation] = useState('');
+   // const [vehicleType, setVehicleType] = useState('');
+   // const [vehicleEquipment, setVehicleEquipment] = useState('');
+   // const [campers, setCampers] = useState([]);
+    const dispatch = useDispatch();
+    let campers = []
+    const handleSearch = (e) => {
+    e.preventDefault();
+     campers=dispatch(fetchCampers(e.target.value));
+    };
+
   return (
     <>
-        <div id="leftSection" className="flex flex-col gap-4 items-start">
+    <div className='flex flex-row justify-around  items-start flex-wrap w-full m-auto'>
+        <div id="leftSection" className="flex flex-col gap-4 items-start w-1/2">
             <div className="flex flex-col gap-4 items-start">
                 <p className="text-slate-500">Location</p>
                 <input type="select" placeholder="Kyiv, Ukraine"></input>
@@ -58,11 +71,21 @@ const CatalogPage=()=>{
                     </div>
             </div>
             </div>
-            <button className="flex bg-red-600 text-amber-50 w-22 h-10 p-2">Search</button>
+            <button className="flex bg-red-600 text-amber-50 w-22 h-10 p-2" onSubmit={handleSearch}>Search</button>
         </div>
-        <div id="rightSection">
+        <div id="rightSection" className='flex flex-col justify-start w-1/2'>
+            {campers.length > 0 ? (
+                <ul className='flex flex-col gap-4'>
+                    {campers.map((camper,index)=>{
+                        <li key={index}>{camper}</li>
+                    })}
+                </ul>
+            ):(
+                <p>No campers,try again</p>
+            )}
 
         </div>
+    </div>
     </>
 
   )
