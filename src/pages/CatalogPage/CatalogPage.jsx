@@ -22,16 +22,16 @@ const CatalogPage=()=>{
 
   return (
     <>
-    <div className='flex flex-row justify-around  items-start flex-wrap w-full m-auto'>
-        <div id="leftSection" className="flex flex-col gap-4 items-start w-1/2">
-            <div className="flex flex-col gap-4 items-start">
+    <div className='flex flex-row justify-around items-start flex-wrap w-full'>
+        <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
+            <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
                 <input type="select" placeholder="Kyiv, Ukraine"></input>
             </div>
-            <div id="vehicleType" className="flex flex-col gap-4 items-start">
+            <div id="vehicleType" className="flex flex-col gap-6 items-start">
                 <p className="text-slate-500">Filters</p>
                 <p>Vehicle Equipment</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-3 grid-rows-2  gap-2 md:gap-5">
                     <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
                         <img src={wind} alt="ac" />
                         <p>AC</p>
@@ -56,7 +56,7 @@ const CatalogPage=()=>{
         </div>
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 md:gap-5">
                     <div className='w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950'>
                         <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
@@ -71,9 +71,9 @@ const CatalogPage=()=>{
                     </div>
             </div>
             </div>
-            <button className="flex bg-red-600 text-amber-50 w-22 h-10 p-2" onSubmit={handleSearch}>Search</button>
+            <button className="flex items-center justify-center bg-red-600 border rounded-3xl text-amber-50 w-22 h-10 p-2" onSubmit={handleSearch}>Search</button>
         </div>
-        <div id="rightSection" className='flex flex-col justify-start w-1/2'>
+        <div id="rightSection" className='flex flex-col justify-start w-2/3 '>
             {campers.length > 0 ? (
                 <ul className='flex flex-col gap-4'>
                     {campers.map((camper,index)=>{

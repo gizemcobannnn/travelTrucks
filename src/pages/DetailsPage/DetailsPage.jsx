@@ -82,7 +82,7 @@ const DetailsPage=() =>{
             <input type="text" placeholder="Email*" />
             <input type="text" placeholder="Booking date*" />
             <input type="text" placeholder="Comment*"/>
-            <button className="bg-red-500 text-slate-50 flex self-center">Send</button>
+            <button className="bg-red-500 text-slate-50 flex items-center justify-center self-center">Send</button>
         </form>
     </div>
     </div>
