@@ -6,6 +6,7 @@ import diagram from '../../assets/diagram.svg';
 import shower from '../../assets/ph_shower.svg';
 import tv from '../../assets/tv.svg';
 import wind from '../../assets/wind.svg';
+import petrol from '../../assets/Group.svg';
 import { useDispatch } from 'react-redux';
 import { fetchCampers } from '../../redux/campers/campersOps';
 import { useState } from 'react';
@@ -16,6 +17,9 @@ const CatalogPage=()=>{
     const [vehicleType, setVehicleType] = useState('');
     const [vehicleEquipment, setVehicleEquipment] = useState('');
    // const [campers, setCampers] = useState([]);
+   const [expanded, setExpanded] = useState(false);
+
+   // const [selectedCamper, setSelectedCamper] = useState(null);
     const dispatch = useDispatch();
       const camperItems = useSelector(state => state.trucks.campers); 
 console.log(camperItems);
@@ -86,21 +90,53 @@ console.log(camperItems);
             </div>
             <button className="flex items-center justify-center bg-red-600 border rounded-3xl text-amber-50 w-22 h-10 p-2" onClick={handleSearch} >Search</button>
         </div>
-        <div id="rightSection" className='flex flex-col justify-start w-2/3 '>
+        <div id="rightSection" className='flex flex-col justify-start w-2/3 bg-white '>
             {camperItems.length > 0 ? (
                 <ul className='flex flex-col gap-4'>
                     {camperItems.map((camper)=>{
                         return(
                             <div key={camper.id} className='flex flex-col gap-2'>
-                                <li  className='flex flex-row gap-4 items-center justify-start bg-slate-100 rounded-lg p-4'>
-                                    <div className='imageSide'>
+                                <li  className='flex flex-row gap-4 items-start justify-start bg-white rounded-lg p-4'>
+                                    <div className='imageSide w-1/2'>
                                         <img src={camper.gallery[0].thumb} alt="thumb" width="292px" height="320px"/>
                                     </div>
-                                    <div className='textSide'>
-                                        <div className='flex flex-col justify-center items-start'>
+                                    <div className='textSide w-1/2'>
+                                        <div className='flex flex-col justify-center items-start w-full max-w-[400px]'>
                                             <h2 className='text-2xl font-bold'>{camper.name}</h2>
-                                            <p></p>
-                                            <p>{camper.description}</p>
+                                            <div className='flex flex-row gap-2 items-center'>
+                                                <p>Reviews</p>
+                                                <p>{camper.location}</p>
+                                            </div>
+                                            <p className={`${expanded ? "": "truncate"} cursor-pointer flex w-full`} onClick={()=>{setExpanded(!expanded)}}>{camper.description}</p>
+                                            <div className='features flex justify-start items-center gap-2 w-full flex-wrap'>
+                                                {camper.AC===true &&(
+                                                    <div>
+                                                        <img src={wind} alt="ac" />
+                                                        <p>AC</p>
+                                                    </div>)}
+                                                {camper.transmission==="automatic" &&(
+                                                    <div>
+                                                        <img src={diagram} alt="diagram" />
+                                                        <p>Automatic</p>
+                                                    </div>)}
+                                                {camper.bathroom===true &&(<div>
+                                                    <img src={shower} alt="shower" />
+                                                    <p>Bathroom</p>
+                                                </div>)}
+                                                {camper.kitchen===true &&(
+                                                    <div>
+                                                        <img src={cupHot} alt="cupHot" />
+                                                        <p>Kitchen</p>
+                                                    </div>)}
+                                                {camper.engine==="petrol" ? (<div>
+                                                    <img src={petrol} alt="petrol" />
+                                                    <p>Petrol</p>
+                                                </div>): (<div>
+                                                    <img src={petrol} alt="petrol" />
+                                                    <p>Gas</p>
+                                                </div>)}
+                                            </div>
+                                            <button className='flex items-center justify-center'>Show more</button>
                                         </div>
                                         
                                     </div>
