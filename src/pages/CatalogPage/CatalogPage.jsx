@@ -21,8 +21,8 @@ const CatalogPage=()=>{
 console.log(camperItems);
     const handleSearch = async (e) => {
     e.preventDefault();
-     const x=await dispatch(fetchCampers()).unwrap();
-     console.log(x);
+     await dispatch(fetchCampers()).unwrap();
+
     };
 
   return (
@@ -92,8 +92,18 @@ console.log(camperItems);
                     {camperItems.map((camper)=>{
                         return(
                             <div key={camper.id} className='flex flex-col gap-2'>
-                                <li  className='flex flex-row gap-4 items-center justify-between bg-slate-100 rounded-lg p-4'>
-                               {camper.name}
+                                <li  className='flex flex-row gap-4 items-center justify-start bg-slate-100 rounded-lg p-4'>
+                                    <div className='imageSide'>
+                                        <img src={camper.gallery[0].thumb} alt="thumb" width="292px" height="320px"/>
+                                    </div>
+                                    <div className='textSide'>
+                                        <div className='flex flex-col justify-center items-start'>
+                                            <h2 className='text-2xl font-bold'>{camper.name}</h2>
+                                            <p></p>
+                                            <p>{camper.description}</p>
+                                        </div>
+                                        
+                                    </div>
                                 </li>
                             </div>
                             )
