@@ -1,9 +1,9 @@
 import Picture from '../../assets/Picture.svg';
 const HomePage = () => {
   return (
-      <div style={{backgroundImage: `url(${Picture})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}} 
-        className="flex w-full pl-20 " >
-        <div className="flex flex-col justify-center items-start gap-3 bg-opacity-50">
+      <div style={{backgroundImage: `url(${Picture})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', height: '100vh'}} 
+        className="flex h-screen w-screen bg-cover " >
+        <div className="flex flex-col justify-center items-start gap-3 bg-opacity-50  pl-20">
             <p className='text-3xl font-bold text-slate-50'>Campers of your dream</p>
             <p className='text-xl font-bold text-slate-50'>You can find everything you want in our catalog</p>
             <button className='view bg-red-500 border-b  border-amber-50 text-slate-50 !w-40 !p-6 flex items-center justify-center'>View Now</button>

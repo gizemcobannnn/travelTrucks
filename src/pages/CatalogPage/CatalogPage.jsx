@@ -110,9 +110,9 @@ console.log(camperItems);
                     {camperItems.map((camper)=>{
                         return(
                             <div key={camper.id} className='flex flex-col gap-2'>
-                                <li  className='flex flex-row gap-4 items-start justify-start bg-white rounded-lg p-4'>
-                                    <div className='imageSide w-1/2'>
-                                        <img src={camper.gallery[0].thumb} alt="thumb" width="292px" height="320px"/>
+                                <li  className='flex flex-row gap-4 items-start justify-start bg-white border border-gray-300 rounded-lg p-4'>
+                                    <div className='imageSide w-1/2 h-full '>
+                                        <img src={camper.gallery[0].thumb} alt="thumb"/>
                                     </div>
                                     <div className='textSide w-1/2'>
                                         <div className='flex flex-col justify-center items-start w-full max-w-[400px]'>
