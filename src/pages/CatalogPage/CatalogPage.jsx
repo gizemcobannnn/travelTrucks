@@ -116,7 +116,11 @@ console.log(camperItems);
                                     </div>
                                     <div className='textSide w-1/2'>
                                         <div className='flex flex-col justify-center items-start w-full max-w-[400px]'>
-                                            <h2 className='text-2xl font-bold'>{camper.name}</h2>
+                                            <div className='flex flex-row justify-between items-center w-full'>
+                                                <h2 className='text-2xl font-bold'>{camper.name}</h2>
+                                                <h2 className='text-2xl font-bold'>€{camper.price}</h2>
+                                            </div>
+
                                             <div className='flex flex-row gap-2 items-center'>
                                                 <p>Reviews</p>
                                                 <p>{camper.location}</p>
