@@ -36,7 +36,12 @@ console.log(camperItems);
         <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
-                <input type="select" placeholder="Kyiv, Ukraine"></input>
+                <select>{
+                camperItems.length > 0 && camperItems.map((camper,index)=>(
+                        <option key={index} value={camper.location}>{camper.location}</option>
+                    ))                     
+                }
+                </select> 
             </div>
             <div id="vehicleType" className="flex flex-col gap-6 items-start">
                 <p className="text-slate-500">Filters</p>
