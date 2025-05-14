@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { fetchCamper } from "../../redux/campers/campersOps";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Features from "../../components/Features/Features";
 const DetailsPage=() =>{
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -41,50 +42,36 @@ const DetailsPage=() =>{
         <p>Reviews</p>
     </div>
     <div className="flex flex-row justify-between flex-wrap">
-        <div className="flex flex-col flex-wrap gap-5">
-            <div className="flex flex-row gap-5 justify-between flex-wrap">
-            <div className="featuresdiv">
-                Automatic
-            </div>
-            <div className="featuresdiv">
-                AC
-            </div>
-            <div className="featuresdiv">
-                Petrol
-            </div>
-            <div className="featuresdiv">
-                Kitchen
-            </div>
-            <div className="featuresdiv">
-                Radio
-            </div>
+        <div className="flex flex-col flex-wrap gap-5 bg-gray-100 p-12">
+            <div className="grid grid-cols-4 grid-row-2 gap-2 justify-between flex-wrap ">
+                <Features />
             </div>
 
         <div className="flex flex-col gap-5 justify- flex-wrap">
-        <p>Vehicle Details</p>
+        <p className="text-xl font-bold border-b  border-gray-300 pb-5 pt-8">Vehicle Details</p>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Form</p>
-            <p>2</p>
+            <p>{camper.form}</p>
         </div>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Length</p>
-            <p>2</p>
+            <p>{camper.length}</p>
         </div>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Width</p>
-            <p>2</p>
+            <p>{camper.width}</p>
         </div>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Height</p>
-            <p>2</p>
+            <p>{camper.height}</p>
         </div>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Tank</p>
-            <p>2</p>
+            <p>{camper.tank}</p>
         </div>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Consumption</p>
-            <p>2</p>
+            <p>{camper.consumption}</p>
         </div>
         </div>
     </div>
@@ -101,16 +88,16 @@ const DetailsPage=() =>{
         </div>
     }
 
-    <div className="comments flex flex-col items-start gap-1">
+    <div className="comments flex flex-col items-start gap-1 p-10 border border-gray-200 rounded-lg">
         <h3 className="font-bold text-xl">Book your campervan now</h3>
         <p className="text-slate-500">Stay connected! We are always ready to help you.</p>
         <form action="" className="flex flex-col gap-2 mt-3 ml-2 w-full">
             <input type="text" placeholder="Name*"/>
             <input type="text" placeholder="Email*" />
             <input type="text" placeholder="Booking date*" />
-            <input type="text" placeholder="Comment*"/>
+            <textarea rows="4" placeholder="Comment*" />
             <div className="flex justify-center w-full">
-                            <button className="bg-red-500 text-slate-50 flex items-center justify-center">Send</button>
+                <button className="bg-red-500 text-slate-50 flex items-center justify-center">Send</button>
             </div>
         </form>
     </div>
