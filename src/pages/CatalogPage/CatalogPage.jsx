@@ -42,9 +42,10 @@ console.log(camperItems);
                 <select  onChange={(e)=> setLocation(e.target.value)}>
                     <option key="default" value="">Enter the location</option>
                     {
-                camperItems.length > 0 && camperItems.map((camper,index)=>(
-                        <option key={index} value={camper.location}>{camper.location}</option>
-                    ))                     
+                camperItems.length > 0 && [...new Set(camperItems.map(camper => camper.location))]
+                    .map((location, index) => (
+                        <option key={index} value={location}>{location}</option>
+  ))                     
                 }
                 </select> 
             </div>
@@ -58,12 +59,12 @@ console.log(camperItems);
                         <p>AC</p>
                     </div>
                     <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Automatic"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("Automatic")}>
+                        onClick={()=> setVehicleEquipment("automatic")}>
                         <img src={diagram} alt="auto" />
                         <p>Automatic</p>
                     </div>
                     <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Kitchen"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("Kitchen")}>
+                        onClick={()=> setVehicleEquipment("kitchen")}>
                         <img src={cupHot} alt="cup" />
                         <p>Kitchen</p>
                     </div>
@@ -73,7 +74,7 @@ console.log(camperItems);
                         <p>TV</p>
                     </div>
                     <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Bathroom"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("Bathroom")}>
+                        onClick={()=> setVehicleEquipment("bathroom")}>
                         <img src={shower} alt="bathroom" />
                         <p>Bathroom</p>
                     </div>
@@ -83,17 +84,17 @@ console.log(camperItems);
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2 md:gap-5">
                     <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Van"?"selected":""}`}
-                        onClick={()=> setVehicleType("Van")}>
+                        onClick={()=> setVehicleType("van")}>
                         <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
                     </div>
                     <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Fully integrated"?"selected":""}`}
-                        onClick={()=> setVehicleType("Fully integrated")}>
+                        onClick={()=> setVehicleType("fullyIntegrated")}>
                         <img src={fullyIcon} alt="fully" />
                         <p className='text-sm flex leading-tight'>Fully integrated</p>
                     </div>
                     <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Alcove"?"selected":""}`}
-                        onClick={()=> setVehicleType("Alcove")}>
+                        onClick={()=> setVehicleType("alcove")}>
                         <img src={alcoveIcon} alt="alcove" />
                         <p className='text-sm'>Alcove</p>
                     </div>
