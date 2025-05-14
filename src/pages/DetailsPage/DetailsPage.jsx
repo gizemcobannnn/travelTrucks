@@ -41,21 +41,21 @@ const DetailsPage=() =>{
         <p>Reviews</p>
     </div>
     <div className="flex flex-row justify-between flex-wrap">
-        <div className="features flex flex-col flex-wrap gap-5">
+        <div className="flex flex-col flex-wrap gap-5">
             <div className="flex flex-row gap-5 justify-between flex-wrap">
-            <div>
+            <div className="featuresdiv">
                 Automatic
             </div>
-            <div>
+            <div className="featuresdiv">
                 AC
             </div>
-            <div>
+            <div className="featuresdiv">
                 Petrol
             </div>
-            <div>
+            <div className="featuresdiv">
                 Kitchen
             </div>
-            <div>
+            <div className="featuresdiv">
                 Radio
             </div>
             </div>
@@ -102,14 +102,16 @@ const DetailsPage=() =>{
     }
 
     <div className="comments flex flex-col items-start gap-1">
-        <p>Book your campervan now</p>
-        <p>Stay connected! We are always ready to help you.</p>
-        <form action="" className="flex flex-col gap-2 mt-3">
+        <h3 className="font-bold text-xl">Book your campervan now</h3>
+        <p className="text-slate-500">Stay connected! We are always ready to help you.</p>
+        <form action="" className="flex flex-col gap-2 mt-3 ml-2 w-full">
             <input type="text" placeholder="Name*"/>
             <input type="text" placeholder="Email*" />
             <input type="text" placeholder="Booking date*" />
             <input type="text" placeholder="Comment*"/>
-            <button className="bg-red-500 text-slate-50 flex items-center justify-center self-center">Send</button>
+            <div className="flex justify-center w-full">
+                            <button className="bg-red-500 text-slate-50 flex items-center justify-center">Send</button>
+            </div>
         </form>
     </div>
     </div>
