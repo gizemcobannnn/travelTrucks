@@ -10,7 +10,7 @@ const Header = () => {
 
       {/* Navigation */}
       <nav className="flex items-center absolute left-1/2 -translate-x-1/2 gap-6">
-        <NavLink to="/" className="text-orange-500 font-medium cursor-pointer hover:text-orange-600 transition">Home</NavLink>
+        <NavLink to="/" className="text-slate-900 font-medium cursor-pointer hover:text-orange-600 transition">Home</NavLink>
         <NavLink  to="/catalog" className="text-slate-900 font-medium cursor-pointer hover:text-orange-500 transition">Catalog</NavLink>
       </nav>
     </header>

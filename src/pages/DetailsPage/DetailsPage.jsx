@@ -3,6 +3,7 @@ import { fetchCamper } from "../../redux/campers/campersOps";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Features from "../../components/Features/Features";
+import Stars from "../../components/Star/Stars"
 const DetailsPage=() =>{
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const DetailsPage=() =>{
     <div className="flex flex-col gap-5 justify-start items-start mt-20">
         <h1 className="text-2xl font-bold">{camper.name}</h1>
         <div className="flex flex-row gap-5">
-                    <p>starts</p>
+                   {/**  <Stars rating={camper.rating} /> */}
                     <p>{camper.location}</p>
         </div>
         <div className="text-2xl font-bold">$ {camper.price}</div>
