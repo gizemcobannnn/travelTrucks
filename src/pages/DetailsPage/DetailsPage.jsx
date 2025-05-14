@@ -1,13 +1,40 @@
-
+import { useParams } from "react-router-dom";
+import { fetchCamper } from "../../redux/campers/campersOps";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 const DetailsPage=() =>{
+    const { id } = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCamper(id));
+    },[dispatch, id]);
+
+    const camper = useSelector(state => state.trucks.camper);
+    console.log(camper);
   return (
     <>
-    <div className="flex flex-col gap-5 justify-start items-start">
-        <h1>Mavericks</h1>
-        <p>starts</p>
-        <p>Ukraine</p>
-        <div></div>
-        <p>Embrace simplicity and freedom with the Mavericks panel truck, an ideal choice for solo travelers or couples seeking a compact and efficient way to explore the open roads. This no-frills yet reliable panel truck offers the essentials for a comfortable journey, making it the perfect companion for those who value simplicity and functionality.</p>
+    <div className="flex flex-col gap-5 justify-start items-start mt-20">
+        <h1 className="text-2xl font-bold">{camper.name}</h1>
+        <div className="flex flex-row gap-5">
+                    <p>starts</p>
+                    <p>{camper.location}</p>
+        </div>
+        <div className="text-2xl font-bold">$ {camper.price}</div>
+        <div className="flex flex-row justify-between w-full">
+            {camper && camper.gallery && (
+                <ul className="flex flex-row justify-between w-full">{camper.gallery.map((image,index)=>{
+                return(
+                    <li  className="flex h-80 w-90 overflow-hidden rounded-lg" key={index}>
+                        <img src={image.thumb} alt="camper" className="w-full h-full object-cover" />
+                    </li>
+                )
+            }
+            )}
+            </ul>
+            )}
+        </div>
+        <p>{camper.description}</p>
     </div>
     <div className="flex flex-row justify-start gap-10 flex-wrap mb-8">
         <p>Features</p>

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-button{
+button, .button{
   display: flex; 
   background-color: rgb(231, 58, 58) ;
   justify-content: center;
@@ -12,18 +12,15 @@ button{
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  
+  margin-top:1em
 }
 
-.features>div, .features div{
-  margin-top: 1em;
-  margin-bottom: 1em;
+.features>div, .featuresdiv{
   display: flex; 
-  width: 5em;
-  height: 5em;
+  flex-direction: row;
   gap:0.5rem;
   background-color: #f1f5f9;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   border-radius: 1em; 
   flex-wrap: wrap;
@@ -32,7 +29,15 @@ button{
   font-size: 1rem;
   border: none;
   cursor: pointer;
+  width: auto;
+  height: 3em;
 }
+
+.featuresdiv img{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 
 .selected {
   border: 2px  solid black

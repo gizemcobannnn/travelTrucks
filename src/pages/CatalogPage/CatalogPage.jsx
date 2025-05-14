@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { fetchCampers } from '../../redux/campers/campersOps';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 const CatalogPage=()=>{
    // const [location, setLocation] = useState('');
     const [vehicleType, setVehicleType] = useState('');
@@ -28,6 +28,7 @@ console.log(camperItems);
      await dispatch(fetchCampers()).unwrap();
 
     };
+
 
   return (
     <>
@@ -108,35 +109,35 @@ console.log(camperItems);
                                                 <p>{camper.location}</p>
                                             </div>
                                             <p className={`${expanded ? "": "truncate"} cursor-pointer flex w-full`} onClick={()=>{setExpanded(!expanded)}}>{camper.description}</p>
-                                            <div className='features flex justify-start items-center gap-2 w-full flex-wrap'>
+                                            <div className='features flex flex-row justify-start items-center gap-2 w-full flex-wrap'>
                                                 {camper.AC===true &&(
-                                                    <div>
+                                                    <div className='featuresdiv'>
                                                         <img src={wind} alt="ac" />
                                                         <p>AC</p>
                                                     </div>)}
                                                 {camper.transmission==="automatic" &&(
-                                                    <div>
+                                                    <div className='featuresdiv'>
                                                         <img src={diagram} alt="diagram" />
                                                         <p>Automatic</p>
-                                                    </div>)}
-                                                {camper.bathroom===true &&(<div>
+                                                    </div >)}
+                                                {camper.bathroom===true &&(<div className='featuresdiv'>
                                                     <img src={shower} alt="shower" />
                                                     <p>Bathroom</p>
                                                 </div>)}
                                                 {camper.kitchen===true &&(
-                                                    <div>
+                                                    <div className='featuresdiv'>
                                                         <img src={cupHot} alt="cupHot" />
                                                         <p>Kitchen</p>
                                                     </div>)}
-                                                {camper.engine==="petrol" ? (<div>
+                                                {camper.engine==="petrol" ? (<div className='featuresdiv'>
                                                     <img src={petrol} alt="petrol" />
                                                     <p>Petrol</p>
-                                                </div>): (<div>
+                                                </div>): (<div className='featuresdiv'>
                                                     <img src={petrol} alt="petrol" />
                                                     <p>Gas</p>
                                                 </div>)}
                                             </div>
-                                            <button className='flex items-center justify-center'>Show more</button>
+                                            <Link to={`/catalog/${camper.id}/details`} className='button flex items-center justify-center'>Show more</Link>
                                         </div>
                                         
                                     </div>
