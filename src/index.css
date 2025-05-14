@@ -62,5 +62,6 @@ form input, form textarea{
   background-color: white;
   color: black;
   border-width: 1rem;
-  border-bottom: rgba(237, 140, 44, 0.959);
+  border-radius: 0;
+  padding-bottom: 30px;
 }

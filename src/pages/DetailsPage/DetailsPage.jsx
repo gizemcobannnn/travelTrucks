@@ -40,9 +40,9 @@ const DetailsPage=() =>{
         </div>
         <p>{camper.description}</p>
     </div>
-    <div className="flex flex-row justify-start gap-10 flex-wrap mb-8 pl-6">
-        <button className={`${activeTab==="features"? "text-orange" : "text-black"} tab`} onClick={()=>{setActiveTab("features")}}>Features</button>
-        <button className={`${activeTab==="reviews" ? "text-orange" : "text-black"} tab`} onClick={()=>{setActiveTab("reviews")}}>Reviews</button>
+    <div className="flex flex-row justify-start gap-10 flex-wrap font-bold mb-8 pl-6">
+        <button className={`${activeTab==="features"? "text-black !border-b-4  !border-red-500" : "text-gray"} tab`} onClick={()=>{setActiveTab("features")}}>Features</button>
+        <button className={`${activeTab==="reviews" ? "text-black !border-b-4  !border-red-500" : "text-gray"} tab`} onClick={()=>{setActiveTab("reviews")}}>Reviews</button>
     </div>
     <div className="flex flex-row flex-wrap justify-between md:flex-nowrap">
         <div className="flex flex-col flex-wrap gap-5 bg-white">
