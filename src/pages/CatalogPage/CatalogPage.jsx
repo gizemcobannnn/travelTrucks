@@ -86,17 +86,17 @@ console.log(camperItems);
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2 md:gap-5">
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "van"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "van"?"selected":""}`}
                         onClick={()=> setVehicleType("van")}>
                         <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "fullyIntegrated"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "fullyIntegrated"?"selected":""}`}
                         onClick={()=> setVehicleType("fullyIntegrated")}>
                         <img src={fullyIcon} alt="fully" />
-                        <p className='text-sm flex leading-tight'>Fully integrated</p>
+                        <p className='text-sm text-center leading-tight' >Fully integrated</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "alcove"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "alcove"?"selected":""}`}
                         onClick={()=> setVehicleType("alcove")}>
                         <img src={alcoveIcon} alt="alcove" />
                         <p className='text-sm'>Alcove</p>
@@ -112,8 +112,8 @@ console.log(camperItems);
                         return(
                             <div key={camper.id} className='flex flex-col gap-2'>
                                 <li  className='flex flex-row gap-4 items-start justify-start bg-white border border-gray-300 rounded-lg p-4'>
-                                    <div className='imageSide w-1/2 h-full '>
-                                        <img src={camper.gallery[0].thumb} alt="thumb"/>
+                                    <div className='imageSide'>
+                                        <img src={camper.gallery[0].thumb}  className="w-[292px] h-[320px] object-cover rounded-xl" alt="thumb"/>
                                     </div>
                                     <div className='textSide w-1/2'>
                                         <div className='flex flex-col justify-center items-start w-full max-w-[400px]'>

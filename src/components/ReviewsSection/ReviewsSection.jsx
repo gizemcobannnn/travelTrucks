@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 export default function ReviewsSection() {
     const camper = useSelector(state => state.trucks.camper)
   return (
-    <div className="flex flex-col gap-5 justify-center flex-wrap">     
+    <div className="flex flex-col gap-5 justify-center flex-wrap p-12 w-1/2 ">     
         <ul className="flex flex-col gap-7 justify-start items-start">
             {camper.reviews && camper.reviews.map((review,index)=>
                 (

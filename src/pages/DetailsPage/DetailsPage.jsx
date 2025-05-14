@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { fetchCamper } from "../../redux/campers/campersOps";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Features from "../../components/Features/Features";
 import Stars from "../../components/Star/Stars"
@@ -15,6 +15,7 @@ const DetailsPage=() =>{
 
     const camper = useSelector(state => state.trucks.camper);
     console.log(camper);
+    const [activeTab, setActiveTab] = useState("features");
   return (
     <>
     <div className="flex flex-col gap-5 justify-start items-start mt-25 pl-10">
@@ -39,13 +40,14 @@ const DetailsPage=() =>{
         </div>
         <p>{camper.description}</p>
     </div>
-    <div className="flex flex-row justify-start gap-10 flex-wrap mb-8">
-        <p>Features</p>
-        <p>Reviews</p>
+    <div className="flex flex-row justify-start gap-10 flex-wrap mb-8 pl-6">
+        <button className={`${activeTab==="features"? "text-orange" : "text-black"} tab`} onClick={()=>{setActiveTab("features")}}>Features</button>
+        <button className={`${activeTab==="reviews" ? "text-orange" : "text-black"} tab`} onClick={()=>{setActiveTab("reviews")}}>Reviews</button>
     </div>
     <div className="flex flex-row flex-wrap justify-between md:flex-nowrap">
-        <div className="flex flex-col flex-wrap gap-5 bg-white p-12 w-1/2">
-            <ReviewsSection />
+        <div className="flex flex-col flex-wrap gap-5 bg-white">
+            {activeTab==="features" && (<Features />)}
+            {activeTab==="reviews" && (<ReviewsSection />)}
         </div>
  -
 

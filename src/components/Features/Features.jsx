@@ -10,9 +10,10 @@ export default function Features() {
 
   return (
     <>
-        <div className="grid grid-cols-4 grid-row-2 gap-2 justify-between flex-wrap ">
+        <div className="flex flex-col gap-2 justify-center flex-wrap pl-14 pt-2 w-full ">
+            <div className="flex gap-2 flex-row justify-start flex-wrap mb-3">
             {camper.AC===true &&(
-                <div className='featuresdiv'>
+                <div className='flex featuresdiv'>
                     <img src={wind} alt="ac" />
                     <p>AC</p>
                 </div>)}
@@ -40,7 +41,7 @@ export default function Features() {
         </div>
 
         <div className="flex flex-col gap-5 justify- flex-wrap">
-        <p className="text-xl font-bold border-b  border-gray-300 pb-5 pt-8">Vehicle Details</p>
+        <p className="text-xl font-bold border-b  border-gray-300 pb-5">Vehicle Details</p>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Form</p>
             <p>{camper.form}</p>
@@ -65,7 +66,7 @@ export default function Features() {
             <p>Consumption</p>
             <p>{camper.consumption}</p>
         </div>
-        </div>
+        </div></div>
     </>
   )
 }

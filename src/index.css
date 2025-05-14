@@ -58,3 +58,9 @@ form input, form textarea{
   background-color: #f2f4f6;
   padding: 0.5rem;
 }
+.tab{
+  background-color: white;
+  color: black;
+  border-width: 1rem;
+  border-bottom: rgba(237, 140, 44, 0.959);
+}
