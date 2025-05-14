@@ -30,6 +30,8 @@ console.log(camperItems);
      await dispatch(fetchCampers({location,vehicleType,vehicleEquipment})).unwrap();
     }catch(e){
         console.error('Error fetching campers:',e);
+    }finally{
+        setLocation("");setVehicleEquipment("");setVehicleType("");
     }};
 
     console.log(location,vehicleType,vehicleEquipment)
@@ -58,12 +60,12 @@ console.log(camperItems);
                         <img src={wind} alt="ac" />
                         <p>AC</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Automatic"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "automatic"?"selected":""}`}
                         onClick={()=> setVehicleEquipment("automatic")}>
                         <img src={diagram} alt="auto" />
                         <p>Automatic</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Kitchen"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "kitchen"?"selected":""}`}
                         onClick={()=> setVehicleEquipment("kitchen")}>
                         <img src={cupHot} alt="cup" />
                         <p>Kitchen</p>
@@ -73,7 +75,7 @@ console.log(camperItems);
                         <img src={tv} alt="tv" />
                         <p>TV</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "Bathroom"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "bathroom"?"selected":""}`}
                         onClick={()=> setVehicleEquipment("bathroom")}>
                         <img src={shower} alt="bathroom" />
                         <p>Bathroom</p>
@@ -83,17 +85,17 @@ console.log(camperItems);
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2 md:gap-5">
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Van"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "van"?"selected":""}`}
                         onClick={()=> setVehicleType("van")}>
                         <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Fully integrated"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "fullyIntegrated"?"selected":""}`}
                         onClick={()=> setVehicleType("fullyIntegrated")}>
                         <img src={fullyIcon} alt="fully" />
                         <p className='text-sm flex leading-tight'>Fully integrated</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "Alcove"?"selected":""}`}
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "alcove"?"selected":""}`}
                         onClick={()=> setVehicleType("alcove")}>
                         <img src={alcoveIcon} alt="alcove" />
                         <p className='text-sm'>Alcove</p>
