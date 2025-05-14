@@ -3,9 +3,9 @@
 button, .button{
   display: flex; 
   background-color: rgb(231, 58, 58) ;
+  flex-direction: row;
   justify-content: center;
   border-radius: 60em; 
-  width: 7rem;
   height: 2.5rem;
   padding: 1rem;
   color: white;

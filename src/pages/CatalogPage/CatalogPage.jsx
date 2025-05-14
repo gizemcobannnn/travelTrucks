@@ -36,7 +36,9 @@ console.log(camperItems);
         <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
-                <select>{
+                <select >
+                    <option key="default" value="">Enter the location</option>
+                    {
                 camperItems.length > 0 && camperItems.map((camper,index)=>(
                         <option key={index} value={camper.location}>{camper.location}</option>
                     ))                     
@@ -142,7 +144,7 @@ console.log(camperItems);
                                                     <p>Gas</p>
                                                 </div>)}
                                             </div>
-                                            <Link to={`/catalog/${camper.id}/details`} className='button flex items-center justify-center'>Show more</Link>
+                                            <Link to={`/catalog/${camper.id}/details`} className='button flex !flex-row items-center justify-center'>Show more</Link>
                                         </div>
                                         
                                     </div>
