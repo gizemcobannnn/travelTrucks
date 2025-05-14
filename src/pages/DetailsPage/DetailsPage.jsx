@@ -17,7 +17,7 @@ const DetailsPage=() =>{
     console.log(camper);
   return (
     <>
-    <div className="flex flex-col gap-5 justify-start items-start mt-20">
+    <div className="flex flex-col gap-5 justify-start items-start mt-25 pl-10">
         <h1 className="text-2xl font-bold">{camper.name}</h1>
         <div className="flex flex-row gap-5">
                    {/**  <Stars rating={camper.rating} /> */}

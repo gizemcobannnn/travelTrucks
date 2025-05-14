@@ -7,6 +7,7 @@ import shower from '../../assets/ph_shower.svg';
 import tv from '../../assets/tv.svg';
 import wind from '../../assets/wind.svg';
 import petrol from '../../assets/Group.svg';
+import { MdFavoriteBorder } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { fetchCampers } from '../../redux/campers/campersOps';
 import { useState } from 'react';
@@ -37,7 +38,7 @@ console.log(camperItems);
     console.log(location,vehicleType,vehicleEquipment)
   return (
     <>
-    <div className='flex flex-row justify-around items-start flex-wrap w-full mt-15'>
+    <div className='flex flex-row justify-around items-start flex-wrap w-full mt-25 pl-10'>
         <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
@@ -118,7 +119,11 @@ console.log(camperItems);
                                         <div className='flex flex-col justify-center items-start w-full max-w-[400px]'>
                                             <div className='flex flex-row justify-between items-center w-full'>
                                                 <h2 className='text-2xl font-bold'>{camper.name}</h2>
-                                                <h2 className='text-2xl font-bold'>€{camper.price}</h2>
+                                                <div className='flex flex-row gap-1 items-center'>
+                                                    <h2 className='text-2xl font-bold'>€{camper.price}</h2>
+                                                    <MdFavoriteBorder className='h-7 w-7 font-light'/>
+                                                </div>
+
                                             </div>
 
                                             <div className='flex flex-row gap-2 items-center'>
