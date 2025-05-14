@@ -24,12 +24,11 @@ button, .button{
   align-items: center;
   border-radius: 1em; 
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: 0.7rem;
   color: black;
   font-size: 1rem;
   border: none;
   cursor: pointer;
-
 }
 
 .featuresdiv img{

@@ -13,30 +13,33 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 const CatalogPage=()=>{
-   // const [location, setLocation] = useState('');
+    const [location, setLocation] = useState('');
     const [vehicleType, setVehicleType] = useState('');
     const [vehicleEquipment, setVehicleEquipment] = useState('');
    // const [campers, setCampers] = useState([]);
    const [expanded, setExpanded] = useState(false);
-
    // const [selectedCamper, setSelectedCamper] = useState(null);
     const dispatch = useDispatch();
       const camperItems = useSelector(state => state.trucks.campers); 
+    const filter = {location: location, vehicleType: vehicleType, vehicleEquipment: vehicleEquipment};
+    console.log(filter);
 console.log(camperItems);
     const handleSearch = async (e) => {
     e.preventDefault();
-     await dispatch(fetchCampers()).unwrap();
+    try{
+     await dispatch(fetchCampers({location,vehicleType,vehicleEquipment})).unwrap();
+    }catch(e){
+        console.error('Error fetching campers:',e);
+    }};
 
-    };
-
-
+    console.log(location,vehicleType,vehicleEquipment)
   return (
     <>
     <div className='flex flex-row justify-around items-start flex-wrap w-full mt-15'>
         <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
-                <select >
+                <select  onChange={(e)=> setLocation(e.target.value)}>
                     <option key="default" value="">Enter the location</option>
                     {
                 camperItems.length > 0 && camperItems.map((camper,index)=>(
