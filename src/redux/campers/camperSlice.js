@@ -5,6 +5,7 @@ export const initialState = {
     campers: [],
     camper : {},
     error: null,
+    favorites: [],
 }
 
 export const camperSlice = createSlice({

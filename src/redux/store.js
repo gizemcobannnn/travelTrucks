@@ -6,7 +6,7 @@ import camperReducer from './campers/camperSlice';
 const camperPersistConfig = {
   key: 'trucks',
   storage,
-  whitelist: ['campers','camper'], // sadece favorites'ı localStorage'da saklayacak
+  whitelist: ['campers','camper','favorites'], // sadece favorites'ı localStorage'da saklayacak
 };
 
 const persistedCamperReducer = persistReducer(camperPersistConfig, camperReducer);
