@@ -18,8 +18,11 @@ const CatalogPage=()=>{
     const [vehicleType, setVehicleType] = useState('');
     const [vehicleEquipment, setVehicleEquipment] = useState('');
    // const [campers, setCampers] = useState([]);
-   const [expanded, setExpanded] = useState(false);
-   // const [selectedCamper, setSelectedCamper] = useState(null);
+    const [expanded, setExpanded] = useState(false);
+    const [visibleCount, setVisibleCount] = useState(4);
+    const loadMore = () => {
+        setVisibleCount((prev)=>prev+4)
+    }
     const dispatch = useDispatch();
       const camperItems = useSelector(state => state.trucks.campers); 
     const filter = {location: location, vehicleType: vehicleType, vehicleEquipment: vehicleEquipment};
@@ -35,7 +38,7 @@ console.log(camperItems);
         setLocation("");setVehicleEquipment("");setVehicleType("");
     }};
 
-    console.log(location,vehicleType,vehicleEquipment)
+    
   return (
     <>
     <div className='flex flex-row justify-around items-start flex-wrap w-full mt-25 pl-10'>
@@ -45,7 +48,7 @@ console.log(camperItems);
                 <select  onChange={(e)=> setLocation(e.target.value)}>
                     <option key="default" value="">Enter the location</option>
                     {
-                camperItems.length > 0 && [...new Set(camperItems.map(camper => camper.location))]
+                    camperItems.length > 0 && [...new Set(camperItems.map(camper => camper.location))]
                     .map((location, index) => (
                         <option key={index} value={location}>{location}</option>
   ))                     
@@ -108,7 +111,7 @@ console.log(camperItems);
         <div id="rightSection" className='flex flex-col justify-start w-2/3 bg-white '>
             {camperItems.length > 0 ? (
                 <ul className='flex flex-col gap-4'>
-                    {camperItems.map((camper)=>{
+                    {camperItems.slice(0,visibleCount).map((camper)=>{
                         return(
                             <div key={camper.id} className='flex flex-col gap-2'>
                                 <li  className='flex flex-row gap-4 items-start justify-start bg-white border border-gray-300 rounded-lg p-4'>
@@ -159,7 +162,12 @@ console.log(camperItems);
                                                     <p>Gas</p>
                                                 </div>)}
                                             </div>
-                                            <Link to={`/catalog/${camper.id}/details`} className='button flex !flex-row items-center justify-center'>Show more</Link>
+                                            
+                                            <Link to={`/catalog/${camper.id}/details`} 
+                                                className='button flex !flex-row items-center justify-center'>                                        
+                                                Show more
+                                            </Link>
+
                                         </div>
                                         
                                     </div>
@@ -169,10 +177,16 @@ console.log(camperItems);
                }
                     )}
                 </ul>
+
             ):(
                 <p>No campers,try again</p>
-            )}
-
+            )
+        }
+        {visibleCount < camperItems.length && (
+            <div className='flex justify-center items-center'>
+                <button onClick={loadMore} className='!text-slate-900 !bg-white flex !border !border-gray-300 mb-2 !flex-row items-center justify-center'>Load More</button>
+            </div>
+        )}
         </div>
     </div>
     </>
