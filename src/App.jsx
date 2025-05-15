@@ -9,11 +9,8 @@ function App() {
 
   return (
     <>
-      {/**<HomePage></HomePage>*/}
-      {/**<Header><CatalogPage></CatalogPage></Header>*/}
       <Header></Header>
       {/**  */}
-      {/** <DetailsPage></DetailsPage> */}
       <AppRoutes/>
     </>
   )
