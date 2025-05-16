@@ -7,7 +7,7 @@ import shower from '../../assets/ph_shower.svg';
 import tv from '../../assets/tv.svg';
 import wind from '../../assets/wind.svg';
 import petrol from '../../assets/Group.svg';
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { fetchCampers } from '../../redux/campers/campersOps';
 import { useState } from 'react';
@@ -20,6 +20,7 @@ const CatalogPage=()=>{
    // const [campers, setCampers] = useState([]);
     const [expanded, setExpanded] = useState(false);
     const [visibleCount, setVisibleCount] = useState(4);
+    const [favorite,setFavorite] = useState(false);
     const loadMore = () => {
         setVisibleCount((prev)=>prev+4)
     }
@@ -124,7 +125,12 @@ console.log(camperItems);
                                                 <h2 className='text-2xl font-bold'>{camper.name}</h2>
                                                 <div className='flex flex-row gap-1 items-center'>
                                                     <h2 className='text-2xl font-bold'>€{camper.price}</h2>
-                                                    <MdFavoriteBorder className='h-7 w-7 font-light'/>
+                                                    {favorite ? (
+                                                        <MdFavorite className={`h-7 w-7 font-light ${favorite===true?'text-amber-300': 'text-amber-50'}`} onClick={()=>setFavorite(!favorite)} />
+                                                    ):(
+                                                        <MdFavoriteBorder className={`h-7 w-7 font-light text-slate-700`} onClick={()=>setFavorite(!favorite)} />
+
+                                                    )}
                                                 </div>
 
                                             </div>
