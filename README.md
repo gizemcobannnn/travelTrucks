@@ -8,11 +8,11 @@ Travel Trucks is a camper catalog web app built with React, Redux Toolkit, and A
 https://travel-trucks-tan-eight.vercel.app/
 
 📂 Features  
-    View a catalog of campers  
-    Favorite and unfavorite campers  
-    Filter campers {Location, Vehicle Type (Van, Fully Integrated, Alcove), Vehicle Equipment (AC, Automatic, Kitchen, TV, Bathroom)]  
-    View detailed information about each camper  
-    Load more campers dynamically  
+&emsp;View a catalog of campers  
+&emsp;Favorite and unfavorite campers  
+&emsp;Filter campers {Location, Vehicle Type (Van, Fully Integrated, Alcove), Vehicle Equipment (AC, Automatic, Kitchen, TV, Bathroom)]  
+&emsp;View detailed information about each camper  
+&emsp;Load more campers dynamically  
 
 ⚙️ Project Structure
 services/  
