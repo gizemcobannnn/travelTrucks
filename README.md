@@ -1,3 +1,39 @@
-# travelTrucks
-fetchCampers and fetchCamper services have been set up. These services uses get method from axios. The results come from API_URL, it was defined in campersOps.js.
-camperSlice file was set up and cases were created according to fullfiling, pending, rejected stages.
+🚐 Travel Trucks
+A simple React project where users can browse a list of travel campers, favorite them, and view their details.
+
+📌 Overview
+Travel Trucks is a camper catalog web app built with React, Redux Toolkit, and Axios. It fetches camper data from an external API and allows users to filter, search, favorite, and explore detailed information about each camper.
+
+🌐 Live Demo
+https://travel-trucks-tan-eight.vercel.app/
+
+📂 Features
+🛻 View a catalog of campers
+❤️ Favorite and unfavorite campers
+🔍 Filter campers
+      Location
+      Vehicle Type (Van, Fully Integrated, Alcove)
+      Vehicle Equipment (AC, Automatic, Kitchen, TV, Bathroom)
+📖 View detailed information about each camper
+🔄 Load more campers dynamically
+
+⚙️ Project Structure
+services/
+fetchCampers and fetchCamper services use Axios to make GET requests to the API.
+API base URL is configured in campersOps.js.
+redux/camperSlice.js
+Manages the camper state via Redux Toolkit.
+Handles API call stages: pending, fulfilled, and rejected.
+
+Pages:
+Home — Introduction and welcome page.
+Catalog — Camper listing page with filtering, favoriting, and details.
+
+🚀 Technologies Used
+React
+Redux Toolkit
+Axios
+React Router
+Tailwind CSS
+Vite
+Vercel (for deployment)
