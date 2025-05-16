@@ -40,13 +40,14 @@ Vercel (for deployment)
 
 ![image](https://github.com/user-attachments/assets/e069cec0-ae22-4b95-91f5-f7ed44748c48)
 
-Figma Design: https://www.figma.com/design/6vTbzaB3EPgOreQz2jOJJe/Campers?node-id=0-1&p=f&t=IlZRlUevquVoQypG-0 
+Figma Design:
+https://www.figma.com/design/6vTbzaB3EPgOreQz2jOJJe/Campers?node-id=0-1&p=f&t=IlZRlUevquVoQypG-0 
 This project design was made according to this Figma design.
 
+🚐 For data of campers
+https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers
+
 🛠️ How to Run Locally
-bash
-Kopyala
-Düzenle
 git clone https://github.com/yourusername/travel-trucks.git
 cd travel-trucks
 npm install
