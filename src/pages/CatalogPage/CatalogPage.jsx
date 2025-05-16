@@ -20,7 +20,16 @@ const CatalogPage=()=>{
    // const [campers, setCampers] = useState([]);
     const [expanded, setExpanded] = useState(false);
     const [visibleCount, setVisibleCount] = useState(4);
-    const [favorite,setFavorite] = useState(false);
+    const [favorites,setFavorite] = useState([]);
+    const toggleFavorite = (id) => {
+        if(favorites.includes(id)){
+            setFavorite(favorites.filter((favid)=>favid !== id))
+        }else{
+            setFavorite([...favorites,id])
+        }
+        
+    };
+    console.log("DDDDDDDDDDDD",favorites);
     const loadMore = () => {
         setVisibleCount((prev)=>prev+4)
     }
@@ -125,10 +134,10 @@ console.log(camperItems);
                                                 <h2 className='text-2xl font-bold'>{camper.name}</h2>
                                                 <div className='flex flex-row gap-1 items-center'>
                                                     <h2 className='text-2xl font-bold'>€{camper.price}</h2>
-                                                    {favorite ? (
-                                                        <MdFavorite className={`h-7 w-7 font-light ${favorite===true?'text-amber-300': 'text-amber-50'}`} onClick={()=>setFavorite(!favorite)} />
+                                                    {favorites.includes(camper.id) ? (
+                                                        <MdFavorite className={`h-7 w-7 font-light text-amber-300 cursor-pointer`} onClick={()=>toggleFavorite(camper.id)} />
                                                     ):(
-                                                        <MdFavoriteBorder className={`h-7 w-7 font-light text-slate-700`} onClick={()=>setFavorite(!favorite)} />
+                                                        <MdFavoriteBorder className={`h-7 w-7 font-light text-black cursor-pointer`} onClick={()=>toggleFavorite(camper.id)} />
 
                                                     )}
                                                 </div>
