@@ -7,6 +7,9 @@ import wind from '../../assets/wind.svg';
 import petrol from '../../assets/Group.svg';
 export default function Features() {
     const camper = useSelector(state => state.trucks.camper);
+    const formattedForm =  camper.form === "alcove" ? "Alcove" :
+                           camper.form === "fullyIntegrated" ? "Fully Integrated" :
+                           camper.form;
 
   return (
     <>
@@ -44,7 +47,7 @@ export default function Features() {
         <p className="text-xl font-bold border-b  border-gray-300 pb-5">Vehicle Details</p>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Form</p>
-            <p>{camper.form}</p>
+            <p>{formattedForm}</p>
         </div>
         <div className="flex flex-row justify-between flex-wrap">
             <p>Length</p>

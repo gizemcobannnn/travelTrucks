@@ -8,10 +8,9 @@ import tv from '../../assets/tv.svg';
 import wind from '../../assets/wind.svg';
 import petrol from '../../assets/Group.svg';
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
-import { useDispatch } from 'react-redux';
 import { fetchCampers } from '../../redux/campers/campersOps';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 const CatalogPage=()=>{
     const [location, setLocation] = useState('');
@@ -21,19 +20,21 @@ const CatalogPage=()=>{
     const [expanded, setExpanded] = useState(false);
     const [visibleCount, setVisibleCount] = useState(4);
     const [favorites,setFavorite] = useState([]);
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(fetchCampers({location:"",vehicleType:"",vehicleEquipment:""}));
+    },[dispatch]);
     const toggleFavorite = (id) => {
         if(favorites.includes(id)){
             setFavorite(favorites.filter((favid)=>favid !== id))
         }else{
             setFavorite([...favorites,id])
         }
-        
     };
-    console.log("DDDDDDDDDDDD",favorites);
     const loadMore = () => {
         setVisibleCount((prev)=>prev+4)
     }
-    const dispatch = useDispatch();
       const camperItems = useSelector(state => state.trucks.campers); 
     const filter = {location: location, vehicleType: vehicleType, vehicleEquipment: vehicleEquipment};
     console.log(filter);

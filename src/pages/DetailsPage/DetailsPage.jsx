@@ -30,7 +30,7 @@ const DetailsPage=() =>{
                 <ul className="flex flex-row justify-between w-full">{camper.gallery.map((image,index)=>{
                 return(
                     <li  className="flex h-80 w-90 overflow-hidden rounded-lg" key={index}>
-                        <img src={image.thumb} alt="camper" className="w-full h-full object-cover" />
+                        <img src={image.original} alt="camper" className="w-full h-full object-cover" />
                     </li>
                 )
             }
