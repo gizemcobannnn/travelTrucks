@@ -37,3 +37,5 @@ React Router
 Tailwind CSS
 Vite
 Vercel (for deployment)
+
+![image](https://github.com/user-attachments/assets/e069cec0-ae22-4b95-91f5-f7ed44748c48)
