@@ -42,3 +42,16 @@ Vercel (for deployment)
 
 Figma Design: https://www.figma.com/design/6vTbzaB3EPgOreQz2jOJJe/Campers?node-id=0-1&p=f&t=IlZRlUevquVoQypG-0 
 This project design was made according to this Figma design.
+
+🛠️ How to Run Locally
+bash
+Kopyala
+Düzenle
+git clone https://github.com/yourusername/travel-trucks.git
+cd travel-trucks
+npm install
+npm run dev
+
+📧 Contact and Developed by:
+Gizem Genç
+[LinkedIn](https://www.linkedin.com/in/gizem-genc/)
