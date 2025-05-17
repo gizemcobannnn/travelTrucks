@@ -25,15 +25,16 @@ const CatalogPage=()=>{
     const dispatch = useDispatch();
     const loading = useSelector((state)=>state.trucks.loading);
     const error = useSelector((state)=>state.trucks.error);
+    const filters = useSelector((state)=>state.trucks.filters)
     
     useEffect(() => {
       const fetchData = async () => {
         try {
           await dispatch(
             fetchCampers({
-              location: "",
-              vehicleType: "",
-              vehicleEquipment: "",
+              location: filters.location,
+              vehicleType: filters.vehicleType,
+              vehicleEquipment: filters.vehicleEquipment,
             })
           ).unwrap();
         } catch (err) {
@@ -74,16 +75,18 @@ console.log(camperItems);
         <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
-                <select  onChange={(e)=> setLocation(e.target.value)}>
-                    <option key="default" value="">Enter the location</option>
-                    {
-                    camperItems.length > 0 && [...new Set(camperItems.map(camper => camper.location))]
-                    .map((location, index) => (
-                        <option key={index} value={location}>{location}</option>
-  ))                     
-                }
-                </select> 
+
+                <input type='text' placeholder='Enter the location' list="location-list" value={location} onChange={(e)=>setLocation(e.target.value)} />
+                  <datalist id="location-list">
+                    {camperItems.length > 0 &&
+                    [...new Set(camperItems.map((camper) => camper.location))].map(
+                        (location, index) => (
+                        <option key={index} value={location} />
+                        )
+                    )}
+                </datalist>
             </div>
+
             <div id="vehicleType" className="flex flex-col gap-6 items-start">
                 <p className="text-slate-500">Filters</p>
                 <p>Vehicle Equipment</p>

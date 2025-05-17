@@ -6,7 +6,12 @@ export const initialState = {
     camper : {},
     error: null,
     favorites: [],
-    loading:false
+    loading:false,
+    filters: {
+    location: '',
+    vehicleType: '',
+    vehicleEquipment: ''
+  },
 }
 
 export const camperSlice = createSlice({
