@@ -14,7 +14,6 @@ const DetailsPage=() =>{
     },[dispatch, id]);
 
     const camper = useSelector(state => state.trucks.camper);
-    console.log(camper);
     const [activeTab, setActiveTab] = useState("features");
   return (
     <>

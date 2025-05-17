@@ -9,15 +9,13 @@ import wind from '../../assets/wind.svg';
 import petrol from '../../assets/Group.svg';
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { fetchCampers } from '../../redux/campers/campersOps';
+import {setFilters} from '../../redux/campers/camperSlice'
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 const CatalogPage=()=>{
-    const [location, setLocation] = useState('');
-    const [vehicleType, setVehicleType] = useState('');
-    const [vehicleEquipment, setVehicleEquipment] = useState('');
-   // const [campers, setCampers] = useState([]);
+
     const [expanded, setExpanded] = useState(false);
     const [visibleCount, setVisibleCount] = useState(4);
     const [favorites,setFavorite] = useState([]);
@@ -38,12 +36,11 @@ const CatalogPage=()=>{
             })
           ).unwrap();
         } catch (err) {
-          console.log(err)
-         
+          throw new Error(`Fetching campers failed: ${err.message}`);
         }
       };
       fetchData();
-    }, [dispatch]);
+    }, [dispatch, filters]);
     const toggleFavorite = (id) => {
         if(favorites.includes(id)){
             setFavorite(favorites.filter((favid)=>favid !== id))
@@ -51,22 +48,23 @@ const CatalogPage=()=>{
             setFavorite([...favorites,id])
         }
     };
+
     const loadMore = () => {
         setVisibleCount((prev)=>prev+4)
     }
       const camperItems = useSelector(state => state.trucks.campers); 
-    const filter = {location: location, vehicleType: vehicleType, vehicleEquipment: vehicleEquipment};
-    console.log(filter);
-console.log(camperItems);
+
     const handleSearch = async (e) => {
-    e.preventDefault();
-    try{
-     await dispatch(fetchCampers({location,vehicleType,vehicleEquipment})).unwrap();
-    }catch(e){
-        console.error('Error fetching campers:',e);
-    }finally{
-        setLocation("");setVehicleEquipment("");setVehicleType("");
-    }};
+      e.preventDefault();
+      try {
+        await dispatch(
+          fetchCampers({filters})
+        ).unwrap();
+        console.log(filters)
+      } catch (e) {
+        throw new Error(`Fetching campers failed: ${e.message}`);
+      }
+    };
 
     
   return (
@@ -76,8 +74,8 @@ console.log(camperItems);
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
 
-                <input type='text' placeholder='Enter the location' list="location-list" value={location} onChange={(e)=>setLocation(e.target.value)} />
-                  <datalist id="location-list">
+                <input type='text' placeholder='Enter the location' list="location-list" value={location} onChange={(e)=>dispatch(setFilters({...filters,location:e.target.value}))} />
+                <datalist id="location-list">
                     {camperItems.length > 0 &&
                     [...new Set(camperItems.map((camper) => camper.location))].map(
                         (location, index) => (
@@ -91,28 +89,28 @@ console.log(camperItems);
                 <p className="text-slate-500">Filters</p>
                 <p>Vehicle Equipment</p>
                 <div className="grid grid-cols-3 grid-rows-2  gap-2 md:gap-5">
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "AC"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("AC")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "AC"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"AC"}))}>
                         <img src={wind} alt="ac" />
                         <p>AC</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "automatic"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("automatic")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "automatic"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"automatic"}))}>
                         <img src={diagram} alt="auto" />
                         <p>Automatic</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "kitchen"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("kitchen")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "kitchen"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"kitchen"}))}>
                         <img src={cupHot} alt="cup" />
                         <p>Kitchen</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "TV"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("TV")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "TV"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"TV"}))}>
                         <img src={tv} alt="tv" />
                         <p>TV</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleEquipment === "bathroom"?"selected":""}`}
-                        onClick={()=> setVehicleEquipment("bathroom")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "bathroom"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"bathroom"}))}>
                         <img src={shower} alt="bathroom" />
                         <p>Bathroom</p>
                     </div>
@@ -121,18 +119,18 @@ console.log(camperItems);
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2 md:gap-5">
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "van"?"selected":""}`}
-                        onClick={()=> setVehicleType("van")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType === "van"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleType:"van"}))}>
                         <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "fullyIntegrated"?"selected":""}`}
-                        onClick={()=> setVehicleType("fullyIntegrated")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType === "fullyIntegrated"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleType:"fullyIntegrated"}))}>
                         <img src={fullyIcon} alt="fully" />
                         <p className='text-sm text-center leading-tight' >Fully integrated</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${vehicleType === "alcove"?"selected":""}`}
-                        onClick={()=> setVehicleType("alcove")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType === "alcove"?"selected":""}`}
+                        onClick={()=> dispatch(setFilters({...filters,vehicleType:"alcove"}))}>
                         <img src={alcoveIcon} alt="alcove" />
                         <p className='text-sm'>Alcove</p>
                     </div>

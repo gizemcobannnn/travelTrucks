@@ -8,15 +8,20 @@ export const initialState = {
     favorites: [],
     loading:false,
     filters: {
-    location: '',
-    vehicleType: '',
-    vehicleEquipment: ''
+        location: '',
+        vehicleType: '',
+        vehicleEquipment: ''
   },
 }
 
 export const camperSlice = createSlice({
     name: initialState.name,
     initialState,
+    reducers:{
+        setFilters:(state,action)=>{
+            state.filters=action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchCampers.fulfilled, (state,action) => {
@@ -59,4 +64,5 @@ export const camperSlice = createSlice({
     }//for builder closure
 }); // for extraReducers closure
 
+export const {setFilters} = camperSlice.actions;
 export default camperSlice.reducer;
