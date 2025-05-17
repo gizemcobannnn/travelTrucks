@@ -12,6 +12,7 @@ import { fetchCampers } from '../../redux/campers/campersOps';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
 const CatalogPage=()=>{
     const [location, setLocation] = useState('');
     const [vehicleType, setVehicleType] = useState('');
@@ -20,11 +21,28 @@ const CatalogPage=()=>{
     const [expanded, setExpanded] = useState(false);
     const [visibleCount, setVisibleCount] = useState(4);
     const [favorites,setFavorite] = useState([]);
+
     const dispatch = useDispatch();
+    const loading = useSelector((state)=>state.trucks.loading);
+    const error = useSelector((state)=>state.trucks.error);
     
     useEffect(() => {
-        dispatch(fetchCampers({location:"",vehicleType:"",vehicleEquipment:""}));
-    },[dispatch]);
+      const fetchData = async () => {
+        try {
+          await dispatch(
+            fetchCampers({
+              location: "",
+              vehicleType: "",
+              vehicleEquipment: "",
+            })
+          ).unwrap();
+        } catch (err) {
+          console.log(err)
+         
+        }
+      };
+      fetchData();
+    }, [dispatch]);
     const toggleFavorite = (id) => {
         if(favorites.includes(id)){
             setFavorite(favorites.filter((favid)=>favid !== id))
@@ -120,9 +138,16 @@ console.log(camperItems);
             <button className="flex items-center justify-center bg-red-600 border rounded-3xl text-amber-50 w-22 h-10 p-2" onClick={handleSearch} >Search</button>
         </div>
         <div id="rightSection" className='flex flex-col justify-start w-2/3 bg-white '>
-            {camperItems.length > 0 ? (
+            {error && !loading && (  <p className="text-red-600 text-lg p-4">{error}</p>)}
+            {camperItems.length === 0 && 
+                <div className='flex justify-center items-center'>
+                    <p className='text-2xl text-red-600 mt-60 '>There is no camper according to filters. Try different filters.</p>
+                </div>}
+            {!loading && !error && (
+                camperItems.length > 0 ? (
                 <ul className='flex flex-col gap-4'>
-                    {camperItems.slice(0,visibleCount).map((camper)=>{
+                    {
+                    camperItems.slice(0,visibleCount).map((camper)=>{
                         return(
                             <div key={camper.id} className='flex flex-col gap-2'>
                                 <li  className='flex flex-row gap-4 items-start justify-start bg-white border border-gray-300 rounded-lg p-4'>
@@ -197,7 +222,7 @@ console.log(camperItems);
             ):(
                 <p>No campers,try again</p>
             )
-        }
+            ) }
         {visibleCount < camperItems.length && (
             <div className='flex justify-center items-center'>
                 <button onClick={loadMore} className='!text-slate-900 !bg-white flex !border !border-gray-300 mb-2 !flex-row items-center justify-center'>Load More</button>

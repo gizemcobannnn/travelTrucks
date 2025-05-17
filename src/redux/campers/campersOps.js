@@ -23,6 +23,7 @@ export const fetchCampers = createAsyncThunk('campers/fetchCampers', async({ loc
     }
 });
 
+
 export const fetchCamper = createAsyncThunk('campers/fetchCamper', async(id,thunkAPI) => {
     try{
         const response = await axios.get(`${API_URL}/${id}`);

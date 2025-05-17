@@ -6,6 +6,7 @@ export const initialState = {
     camper : {},
     error: null,
     favorites: [],
+    loading:false
 }
 
 export const camperSlice = createSlice({
@@ -16,32 +17,38 @@ export const camperSlice = createSlice({
             .addCase(fetchCampers.fulfilled, (state,action) => {
                 state.campers = action.payload.items;
                 state.error = null;
-                state.camper ={}
+                state.camper ={};
+                state.loading=false;
             })
             .addCase(fetchCampers.pending, (state) => {
                 state.campers = [];
                 state.error = null;
                 state.camper ={};
+                state.loading=true;
             })
             .addCase(fetchCampers.rejected, (state,action) => {
                 state.campers = [];
                 state.error = action.error;
                 state.camper = {};
+                state.loading=false;
             })
             .addCase(fetchCamper.fulfilled, (state,action) => {
                 state.camper = action.payload;
                 state.error = null;
                 state.campers = [];
+                state.loading=false;
             })
             .addCase(fetchCamper.pending, (state) => {
                 state.camper = {};
                 state.error = null;
                 state.campers = [];
+                state.loading=true;
             })
             .addCase(fetchCamper.rejected, (state,action) => {
                 state.camper = {};
                 state.error = action.error;
                 state.campers = [];
+                state.loading=false;
             })
 
     }//for builder closure
