@@ -10,7 +10,7 @@ export const initialState = {
     filters: {
         location: '',
         vehicleType: [],
-        vehicleEquipment: []
+        vehicleEquipment: [],
   },
 }
 
@@ -19,7 +19,7 @@ export const camperSlice = createSlice({
     initialState,
     reducers:{
         setFilters:(state,action)=>{
-            state.filters=action.payload;
+            state.filters={ ...state.filters, ...action.payload };
         }
     },
     extraReducers: (builder) => {

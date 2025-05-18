@@ -41,7 +41,7 @@ const CatalogPage=()=>{
         }
       };
       fetchData();
-    }, [dispatch, filters]);
+    }, [dispatch]);
     const toggleFavorite = (id) => {
         if(favorites.includes(id)){
             setFavorite(favorites.filter((favid)=>favid !== id))
@@ -78,7 +78,11 @@ const CatalogPage=()=>{
       e.preventDefault();
       try {
         await dispatch(
-          fetchCampers({filters})
+          fetchCampers({
+            location:filters.location,
+            vehicleEquipment:filters.vehicleEquipment,
+            vehicleType:filters.vehicleType
+          })
         ).unwrap();
         console.log(filters)
       } catch (e) {
@@ -93,13 +97,12 @@ const CatalogPage=()=>{
         <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
-
                 <input type='text' placeholder='Enter the location' value={filters.location} list="location-list"  onChange={(e)=>dispatch(setFilters({...filters,location:e.target.value}))} />
-
             </div>
 
-            <div id="vehicleType" className="flex flex-col gap-6 items-start">
+            <div id="filtersSection" className="flex flex-col gap-6 items-start">
                 <p className="text-slate-500">Filters</p>
+
                 <p>Vehicle Equipment</p>
                 <div className="grid grid-cols-3 grid-rows-2  gap-2 md:gap-5">
                     <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment.includes("AC")?"selected":""}`}
@@ -134,7 +137,7 @@ const CatalogPage=()=>{
                 <div className="flex flex-wrap gap-2 md:gap-5">
                     <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("van")?"selected":""}`}
                         onClick={()=> toggleType("van")}>
-                        <img src={vanIcon} alt="vanf" />
+                        <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
                     </div>
                     <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("fullyIntegrated")?"selected":""}`}
@@ -235,11 +238,11 @@ const CatalogPage=()=>{
                 </div>
             )
             ) }
-        {visibleCount < camperItems.length && (
-            <div className='flex justify-center items-center'>
-                <button onClick={loadMore} className='!text-slate-900 !bg-white flex !border !border-gray-300 mb-2 !flex-row items-center justify-center'>Load More</button>
-            </div>
-        )}
+            {visibleCount < camperItems.length && (
+                <div className='flex justify-center items-center'>
+                    <button onClick={loadMore} className='!text-slate-900 !bg-white flex !border !border-gray-300 mb-2 !flex-row items-center justify-center'>Load More</button>
+                </div>
+            )}
         </div>
     </div>
     </>
