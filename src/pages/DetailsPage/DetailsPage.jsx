@@ -48,8 +48,6 @@ const DetailsPage=() =>{
             {activeTab==="features" && (<Features />)}
             {activeTab==="reviews" && (<ReviewsSection />)}
         </div>
- -
-
         <div className="comments flex flex-col items-start gap-1 p-10 border border-gray-200 rounded-lg w-1/2">
             <h3 className="font-bold text-xl">Book your campervan now</h3>
             <p className="text-slate-500">Stay connected! We are always ready to help you.</p>
