@@ -9,8 +9,8 @@ export const initialState = {
     loading:false,
     filters: {
         location: '',
-        vehicleType: '',
-        vehicleEquipment: ''
+        vehicleType: [],
+        vehicleEquipment: []
   },
 }
 
@@ -25,7 +25,7 @@ export const camperSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCampers.fulfilled, (state,action) => {
-                state.campers = action.payload.items;
+                state.campers = action.payload?.items || [] ;
                 state.error = null;
                 state.camper ={};
                 state.loading=false;
@@ -43,7 +43,7 @@ export const camperSlice = createSlice({
                 state.loading=false;
             })
             .addCase(fetchCamper.fulfilled, (state,action) => {
-                state.camper = action.payload;
+                state.camper = action.payload || {};
                 state.error = null;
                 state.campers = [];
                 state.loading=false;

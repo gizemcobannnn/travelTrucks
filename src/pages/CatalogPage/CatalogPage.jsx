@@ -28,13 +28,14 @@ const CatalogPage=()=>{
     useEffect(() => {
       const fetchData = async () => {
         try {
-          await dispatch(
+            await dispatch(
             fetchCampers({
               location: filters.location,
               vehicleType: filters.vehicleType,
               vehicleEquipment: filters.vehicleEquipment,
             })
           ).unwrap();
+          console.log(filters)
         } catch (err) {
           throw new Error(`Fetching campers failed: ${err.message}`);
         }
@@ -48,6 +49,25 @@ const CatalogPage=()=>{
             setFavorite([...favorites,id])
         }
     };
+
+    const toggleEquipment = (item) => {
+      const isSelected = filters.vehicleEquipment.includes(item);
+      const updatedEquipment = isSelected
+        ? filters.vehicleEquipment.filter((e) => e !== item)
+        : [...filters.vehicleEquipment, item];
+
+      dispatch(setFilters({ ...filters, vehicleEquipment: updatedEquipment }));
+    };
+
+    const toggleType = (item) => {
+      const isSelected = filters.vehicleType.includes(item);
+      const updatedType = isSelected
+        ? filters.vehicleType.filter((e) => e !== item)
+        : [...filters.vehicleType, item];
+
+      dispatch(setFilters({ ...filters, vehicleType: updatedType }));
+    };
+
 
     const loadMore = () => {
         setVisibleCount((prev)=>prev+4)
@@ -74,43 +94,36 @@ const CatalogPage=()=>{
             <div className="flex flex-col gap-5 items-start">
                 <p className="text-slate-500">Location</p>
 
-                <input type='text' placeholder='Enter the location' list="location-list" value={location} onChange={(e)=>dispatch(setFilters({...filters,location:e.target.value}))} />
-                <datalist id="location-list">
-                    {camperItems.length > 0 &&
-                    [...new Set(camperItems.map((camper) => camper.location))].map(
-                        (location, index) => (
-                        <option key={index} value={location} />
-                        )
-                    )}
-                </datalist>
+                <input type='text' placeholder='Enter the location' value={filters.location} list="location-list"  onChange={(e)=>dispatch(setFilters({...filters,location:e.target.value}))} />
+
             </div>
 
             <div id="vehicleType" className="flex flex-col gap-6 items-start">
                 <p className="text-slate-500">Filters</p>
                 <p>Vehicle Equipment</p>
                 <div className="grid grid-cols-3 grid-rows-2  gap-2 md:gap-5">
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "AC"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"AC"}))}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment.includes("AC")?"selected":""}`}
+                        onClick={()=> toggleEquipment("AC")}>
                         <img src={wind} alt="ac" />
                         <p>AC</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "automatic"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"automatic"}))}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment.includes("automatic")?"selected":""}`}
+                        onClick={()=> toggleEquipment("automatic")}>
                         <img src={diagram} alt="auto" />
                         <p>Automatic</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "kitchen"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"kitchen"}))}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment.includes("kitchen")?"selected":""}`}
+                        onClick={()=>  toggleEquipment("kitchen")}>
                         <img src={cupHot} alt="cup" />
                         <p>Kitchen</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "TV"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"TV"}))}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment.includes("TV")?"selected":""}`}
+                        onClick={()=> toggleEquipment("TV")}>
                         <img src={tv} alt="tv" />
                         <p>TV</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment === "bathroom"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleEquipment:"bathroom"}))}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleEquipment.includes("bathroom")?"selected":""}`}
+                        onClick={()=> toggleEquipment("bathroom")}>
                         <img src={shower} alt="bathroom" />
                         <p>Bathroom</p>
                     </div>
@@ -119,18 +132,18 @@ const CatalogPage=()=>{
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2 md:gap-5">
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType === "van"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleType:"van"}))}>
-                        <img src={vanIcon} alt="van" />
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("van")?"selected":""}`}
+                        onClick={()=> toggleType("van")}>
+                        <img src={vanIcon} alt="vanf" />
                         <p className='text-sm'>Van</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType === "fullyIntegrated"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleType:"fullyIntegrated"}))}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("fullyIntegrated")?"selected":""}`}
+                        onClick={()=> toggleType("fullyIntegrated")}>
                         <img src={fullyIcon} alt="fully" />
                         <p className='text-sm text-center leading-tight' >Fully integrated</p>
                     </div>
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType === "alcove"?"selected":""}`}
-                        onClick={()=> dispatch(setFilters({...filters,vehicleType:"alcove"}))}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("alcove")?"selected":""}`}
+                        onClick={()=> toggleType("alcove")}>
                         <img src={alcoveIcon} alt="alcove" />
                         <p className='text-sm'>Alcove</p>
                     </div>
@@ -140,10 +153,6 @@ const CatalogPage=()=>{
         </div>
         <div id="rightSection" className='flex flex-col justify-start w-2/3 bg-white '>
             {error && !loading && (  <p className="text-red-600 text-lg p-4">{error}</p>)}
-            {camperItems.length === 0 && 
-                <div className='flex justify-center items-center'>
-                    <p className='text-2xl text-red-600 mt-60 '>There is no camper according to filters. Try different filters.</p>
-                </div>}
             {!loading && !error && (
                 camperItems.length > 0 ? (
                 <ul className='flex flex-col gap-4'>
@@ -221,7 +230,9 @@ const CatalogPage=()=>{
                 </ul>
 
             ):(
-                <p>No campers,try again</p>
+                <div className='flex justify-center items-center'>
+                    <p className='text-2xl text-red-600 mt-60 '>There is no camper according to filters. Try different filters.</p>
+                </div>
             )
             ) }
         {visibleCount < camperItems.length && (
