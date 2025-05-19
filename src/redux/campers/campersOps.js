@@ -9,11 +9,11 @@ export const fetchCampers = createAsyncThunk('campers/fetchCampers', async({ loc
         if (location) params.append("location", location);
         if (vehicleType) params.append("form", vehicleType);
         if (vehicleEquipment) {
-        if (vehicleEquipment === "AC") params.append("AC", true);
-        if (vehicleEquipment === "Kitchen") params.append("kitchen", true);
-        if (vehicleEquipment === "TV") params.append("TV", true);
-        if (vehicleEquipment === "Bathroom") params.append("bathroom", true);
-        if (vehicleEquipment === "Automatic") params.append("transmission", "automatic");
+        if (vehicleEquipment.includes("AC")) params.append("AC", true);
+        if (vehicleEquipment.includes("kitchen")) params.append("kitchen", true);
+        if (vehicleEquipment.includes("TV")) params.append("TV", true);
+        if (vehicleEquipment.includes("bathroom")) params.append("bathroom", true);
+        if (vehicleEquipment.includes("automatic")) params.append("transmission", "automatic");
     }
 
         const response = await axios.get(`${API_URL}?${params.toString()}`);
