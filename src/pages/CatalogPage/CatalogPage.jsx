@@ -135,8 +135,8 @@ const CatalogPage=()=>{
                 <div id="vehicleType" className="flex flex-col gap-4 items-start">
                 <p>Vehicle Type</p>
                 <div className="flex flex-wrap gap-2 md:gap-5">
-                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("van")?"selected":""}`}
-                        onClick={()=> toggleType("van")}>
+                    <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("panelTruck")?"selected":""}`}
+                        onClick={()=> toggleType("panelTruck")}>
                         <img src={vanIcon} alt="van" />
                         <p className='text-sm'>Van</p>
                     </div>
