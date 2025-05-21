@@ -50,13 +50,14 @@ const filters = useSelector(state=>state.trucks.filters);
 
   return (
             <div id="leftSection" className="flex flex-col gap-4 items-start w-1/3">
-                <div className="flex flex-col gap-5 items-start">
+                <div className="flex flex-col gap-2 items-start">
                     <p className="text-slate-500">Location</p>
-                    <input type='text' placeholder='Enter the location' value={filters.location} list="location-list"  onChange={(e)=>dispatch(setFilters({...filters,location:e.target.value}))} />
+                    <input type='text' placeholder='🗺 Enter the location' value={filters.location} list="location-list"  onChange={(e)=>dispatch(setFilters({...filters,location:e.target.value}))}
+                      className='bg-slate-100 p-1 rounded-lg' />
                 </div>
     
-                <div id="filtersSection" className="flex flex-col gap-6 items-start">
-                    <p className="text-slate-500">Filters</p>
+                <div id="filtersSection" className="flex flex-col gap-3 items-start">
+                    <p className="text-slate-500 mt-1">Filters</p>
     
                     <p>Vehicle Equipment</p>
                     <div className="grid grid-cols-3 grid-rows-2  gap-2 md:gap-5">
@@ -87,7 +88,7 @@ const filters = useSelector(state=>state.trucks.filters);
                         </div>
                 </div>
             </div>
-                    <div id="vehicleType" className="flex flex-col gap-4 items-start">
+                    <div id="vehicleType" className="flex flex-col gap-3 items-start">
                     <p>Vehicle Type</p>
                     <div className="flex flex-wrap gap-2 md:gap-5">
                         <div className={`w-20 h-20 flex flex-col items-center justify-center gap-1 bg-slate-100 rounded-lg text-slate-950 cursor-pointer ${filters.vehicleType.includes("panelTruck")?"selected":""}`}
