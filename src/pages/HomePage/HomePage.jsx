@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <div
       style={{ backgroundImage: `url(${Picture})` }}
-      className="home flex h-screen w-screen bg-cover bg-no-repeat justify-start"
+      className="flex h-screen w-screen bg-cover bg-no-repeat justify-start overflow-hidden"
     >
       <div className="flex flex-col justify-center items-start gap-3 bg-opacity-50  pl-20">
         <p className="text-3xl font-bold text-slate-50">
