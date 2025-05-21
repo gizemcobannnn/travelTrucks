@@ -35,7 +35,7 @@ const CatalogPage=()=>{
     
   return (
     <>
-    <div className='flex flex-row justify-around items-start flex-wrap w-full mt-25 pl-10'>
+    <div className='flex flex-row justify-around items-start flex-wrap w-full mt-25 pl-10 pr-2'>
         <FiltersSection/>
         <ResultSection />
     </div>
